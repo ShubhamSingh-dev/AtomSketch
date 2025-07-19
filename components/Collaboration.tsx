@@ -1,9 +1,11 @@
+"use client"; // Mark as a client component
+
 import { motion } from "framer-motion";
-import { Xmark } from "../assets/icons";
+import { Xmark } from "@/assets/icons"; 
 import { useState } from "react";
 import { useAppContext } from "../provider/AppStates";
 import { v4 as uuid } from "uuid";
-import { useRouter } from "next/router";
+import { useRouter, useSearchParams } from "next/navigation"; // Updated import for App Router
 import { socket } from "../api/socket";
 
 interface CreateSessionProps {
@@ -20,22 +22,38 @@ interface CollabBoxProps {
 }
 
 export const Collaboration = () => {
-  const router = useRouter();
+  const router = useRouter(); // App Router's useRouter
+  const searchParams = useSearchParams(); // Hook to access URL search parameters
   const { session, setSession } = useAppContext();
   const [open, setOpen] = useState(false);
-  const users = 0;
+  const users = 0; // Assuming this value is updated elsewhere or is a placeholder
 
   const startSession = () => {
     const sessionId = uuid();
-    router.push({ query: { room: sessionId } }, undefined, { shallow: true });
+    
+    // Construct new URL with 'room' query parameter
+    const currentPathname = window.location.pathname;
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.set('room', sessionId);
+    
+    // Use router.replace to update URL without full page reload
+    router.replace(`${currentPathname}?${newSearchParams.toString()}`);
+    
     setSession(sessionId);
     socket.emit("join", sessionId);
   };
 
   const endSession = () => {
-    const newQuery = { ...router.query };
-    delete newQuery.room;
-    router.push({ query: newQuery }, undefined, { shallow: true });
+    // Get current search parameters
+    const newSearchParams = new URLSearchParams(searchParams.toString());
+    newSearchParams.delete('room'); // Remove the 'room' parameter
+    
+    // Construct new URL without 'room' query parameter
+    const currentPathname = window.location.pathname;
+    const newUrl = newSearchParams.toString() ? `${currentPathname}?${newSearchParams.toString()}` : currentPathname;
+
+    router.replace(newUrl); // Update URL
+    
     socket.emit("leave", session);
     setSession(null);
     setOpen(false);

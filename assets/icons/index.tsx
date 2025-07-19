@@ -1,10 +1,10 @@
-const demention = 15;
+const dimension = 15;
 
 export const Pencil = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    height={demention}
+    height={dimension}
     fill="currentcolor"
   >
     <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1-33.9-33.9-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2l199.2-199.2 22.6-22.7zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9l-78.2 23 23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7l-14.4 14.5-22.6 22.6-11.4 11.3 33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5l-39.3-39.4c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path>
@@ -15,7 +15,7 @@ export const Eraser = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 576 512"
-    height={demention}
+    height={dimension}
     fill="currentcolor"
   >
     <path d="M290.7 57.4L57.4 290.7c-25 25-25 65.5 0 90.5l80 80c12 12 28.3 18.7 45.3 18.7H512c17.7 0 32-14.3 32-32s-14.3-32-32-32H387.9l130.7-130.6c25-25 25-65.5 0-90.5L381.3 57.4c-25-25-65.5-25-90.5 0zm6.7 358.6H182.6l-80-80 124.7-124.7 137.4 137.4-67.3 67.3z"></path>
@@ -26,7 +26,7 @@ export const Circle = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
-    height={demention}
+    height={dimension}
     fill="currentcolor"
   >
     <path d="M464 256a208 208 0 10-416 0 208 208 0 10416 0zM0 256a256 256 0 11512 0 256 256 0 11-512 0z"></path>
@@ -37,7 +37,7 @@ export const Rectangle = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"
-    height={demention}
+    height={dimension}
     fill="currentcolor"
   >
     <path d="M384 80c8.8 0 16 7.2 16 16v320c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V96c0-8.8 7.2-16 16-16h320zM64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"></path>
@@ -51,7 +51,7 @@ export const Line = () => (
     fill="currentcolor"
     stroke="currentcolor"
     strokeWidth="21"
-    height={demention}
+    height={dimension}
   >
     <path d="M0 139.474H290.658V151.185H0z"></path>
   </svg>
@@ -80,7 +80,7 @@ export const Selection = () => (
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 320 512"
     fill="currentcolor"
-    height={demention}
+    height={dimension}
   >
     <path d="M0 55.2V426c0 12.2 9.9 22 22 22 6.3 0 12.4-2.7 16.6-7.5l82.6-94.5 58.1 116.3c7.9 15.8 27.1 22.2 42.9 14.3s22.2-27.1 14.3-42.9L179.8 320h118.1c12.2 0 22.1-9.9 22.1-22.1 0-6.3-2.7-12.3-7.4-16.5L38.6 37.9c-4.3-3.8-9.7-5.9-15.4-5.9C10.4 32 0 42.4 0 55.2z"></path>
   </svg>
@@ -89,7 +89,7 @@ export const Selection = () => (
 export const Diamond = () => (
   <svg
     fill="none"
-    height={demention}
+    height={dimension}
     stroke="currentColor"
     strokeWidth="2"
     viewBox="0 0 24 24"
@@ -101,7 +101,7 @@ export const Diamond = () => (
 export const Hand = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     stroke="currentColor"
     strokeWidth="5"
@@ -113,7 +113,7 @@ export const Hand = () => (
 
 export const Lock = () => (
   <svg
-    height={demention}
+    height={dimension}
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
@@ -129,7 +129,7 @@ export const Lock = () => (
 export const SolidLine = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     stroke="currentColor"
     strokeWidth="29.066"
@@ -145,7 +145,7 @@ export const DashedLine = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 17 17"
-    height={demention}
+    height={dimension}
   >
     <path
       fill="currentColor"
@@ -157,7 +157,7 @@ export const DashedLine = () => (
 export const DottedLine = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     viewBox="0 0 24 24"
   >
@@ -169,7 +169,7 @@ export const Duplicate = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="30 30 205 205"
-    height={demention}
+    height={dimension}
     fill="currentColor"
   >
     <path d="M47.81 91.725c0-8.328 6.539-15.315 15.568-15.33 9.03-.016 14.863.015 14.863.015s-.388-8.9-.388-15.978c0-7.08 6.227-14.165 15.262-14.165s92.802-.26 101.297.37c8.495.63 15.256 5.973 15.256 14.567 0 8.594-.054 93.807-.054 101.7 0 7.892-7.08 15.063-15.858 15.162-8.778.1-14.727-.1-14.727-.1s.323 9.97.323 16.094c0 6.123-7.12 15.016-15.474 15.016s-93.117.542-101.205.542c-8.088 0-15.552-7.116-15.207-15.987.345-8.871.345-93.58.345-101.906zm46.06-28.487l-.068 98.164c0 1.096.894 1.99 1.999 1.984l95.555-.51a2.007 2.007 0 001.998-2.01l-.064-97.283a2.01 2.01 0 00-2.01-2.007l-95.4-.326a1.99 1.99 0 00-2.01 1.988zM63.268 95.795l.916 96.246a2.007 2.007 0 002.02 1.982l94.125-.715a3.976 3.976 0 003.953-4.026l-.137-11.137s-62.877.578-71.054.578-15.438-7.74-15.438-16.45c0-8.71.588-68.7.588-68.7.01-1.1-.874-1.99-1.976-1.975l-9.027.13a4.025 4.025 0 00-3.97 4.067z"></path>
@@ -179,7 +179,7 @@ export const Duplicate = () => (
 export const Delete = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     viewBox="1 1 22 22"
     stroke="currentColor"
     fill="none"
@@ -194,7 +194,7 @@ export const Delete = () => (
 export const Backward = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     enableBackground="new 0 0 512 512"
     viewBox="0 0 512 512"
@@ -206,7 +206,7 @@ export const Backward = () => (
 export const Forward = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     enableBackground="new 0 0 512 512"
     viewBox="0 0 512 512"
@@ -220,7 +220,7 @@ export const ToBack = () => (
     xmlns="http://www.w3.org/2000/svg"
     enableBackground="new 0 0 512 512"
     viewBox="0 0 512 512"
-    height={demention}
+    height={dimension}
     fill="currentColor"
   >
     <path d="M116.36 232.73h29.09c48.2 0 87.27-39.07 87.27-87.27v-29.09H320c41.77 0 75.64 33.86 75.64 75.64v87.27h-29.09c-48.2 0-87.27 39.07-87.27 87.27v29.09H192c-41.77 0-75.64-33.86-75.64-75.64v-87.27zM0 64C0 28.65 28.65 0 64 0h81.45c35.35 0 64 28.65 64 64v81.45c0 35.35-28.65 64-64 64H64c-35.35 0-64-28.65-64-64V64zm64-29.09c-16.07 0-29.09 13.02-29.09 29.09v81.45c0 16.07 13.02 29.09 29.09 29.09h81.45c16.07 0 29.09-13.02 29.09-29.09V64c0-16.07-13.02-29.09-29.09-29.09H64zm238.55 331.64c0-35.35 28.65-64 64-64H448c35.35 0 64 28.65 64 64V448c0 35.35-28.65 64-64 64h-81.45c-35.35 0-64-28.65-64-64v-81.45zm64-29.1c-16.07 0-29.09 13.02-29.09 29.09V448c0 16.07 13.02 29.09 29.09 29.09H448c16.07 0 29.09-13.02 29.09-29.09v-81.45c0-16.07-13.02-29.09-29.09-29.09h-81.45z"></path>
@@ -230,7 +230,7 @@ export const ToBack = () => (
 export const ToFront = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
+    height={dimension}
     fill="currentColor"
     enableBackground="new 0 0 512 512"
     viewBox="0 0 512 512"
@@ -242,8 +242,8 @@ export const ToFront = () => (
 export const Undo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
-    fill="currentColor"
+    height={dimension}
+    fill="currentcolor"
     viewBox="0 0 24 24"
   >
     <path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L3.71 8.71C3.08 8.08 2 8.52 2 9.41V15c0 .55.45 1 1 1h5.59c.89 0 1.34-1.08.71-1.71l-1.91-1.91c1.39-1.16 3.16-1.88 5.12-1.88 3.16 0 5.89 1.84 7.19 4.5.27.56.91.84 1.5.64.71-.23 1.07-1.04.75-1.72C20.23 10.42 16.65 8 12.5 8z"></path>
@@ -253,8 +253,8 @@ export const Undo = () => (
 export const Redo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height={demention}
-    fill="currentColor"
+    height={dimension}
+    fill="currentcolor"
     viewBox="0 0 24 24"
   >
     <path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.16 0-7.74 2.42-9.44 5.93-.32.67.04 1.47.75 1.71.59.2 1.23-.08 1.5-.64 1.3-2.66 4.03-4.5 7.19-4.5 1.95 0 3.73.72 5.12 1.88l-1.91 1.91c-.63.63-.19 1.71.7 1.71H21c.55 0 1-.45 1-1V9.41c0-.89-1.08-1.34-1.71-.71l-1.89 1.9z"></path>
@@ -296,7 +296,7 @@ export const Xmark = () => (
 
 export const Folder = () => (
   <svg
-    height={demention}
+    height={dimension}
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
@@ -310,7 +310,7 @@ export const Folder = () => (
 
 export const Download = () => (
   <svg
-    height={demention}
+    height={dimension}
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
@@ -324,9 +324,10 @@ export const Download = () => (
   </svg>
 );
 
-export const Image = () => (
+export const ImageIcon = () => (
+  // Renamed from 'Image' to 'ImageIcon'
   <svg
-    height={demention}
+    height={dimension}
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
@@ -339,9 +340,10 @@ export const Image = () => (
     <path d="m21 15-5-5L5 21" />
   </svg>
 );
+
 export const Github = () => (
   <svg
-    height={demention}
+    height={dimension}
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"

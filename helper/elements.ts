@@ -1,12 +1,12 @@
 import { distance } from "./canvas";
 import { v4 as uuid } from "uuid";
 
-interface Point {
+export interface Point {
   x: number;
   y: number;
 }
 
-interface Element {
+export interface Element {
   id: string;
   tool: string;
   x1: number;

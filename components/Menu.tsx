@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { Delete, Download, Folder, MenuIcon, Xmark } from "../assets/icons";
+import { Delete, Download, Folder, MenuIcon, Xmark } from "@/assets/icons";
 import { useAppContext } from "../provider/AppStates";
-import { saveElements, uploadElements } from "../helper/element";
+import { saveElements, uploadElements } from "../helper/elements";
+import { Element } from "../helper/elements";
+import React from "react";
+
+// Define an interface for MenuBox props
+interface MenuBoxProps {
+  elements: Element[];
+  setElements: (
+    elements: Element[] | ((prevElements: Element[]) => Element[])
+  ) => void;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
 export function Menu() {
   const { elements, setElements } = useAppContext();
@@ -28,7 +39,8 @@ export function Menu() {
   );
 }
 
-function MenuBox({ elements, setElements, setShow }) {
+// Apply the MenuBoxProps interface to the MenuBox functional component
+function MenuBox({ elements, setElements, setShow }: MenuBoxProps) {
   const uploadJson = () => uploadElements(setElements);
   const downloadJson = () => saveElements(elements);
   const reset = () => setElements([]);

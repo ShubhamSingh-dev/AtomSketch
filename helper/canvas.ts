@@ -1,21 +1,4 @@
-interface Point {
-  x: number;
-  y: number;
-}
-
-interface Element {
-  tool: string;
-  x1: number;
-  y1: number;
-  x2: number;
-  y2: number;
-  strokeWidth: number;
-  strokeColor: string;
-  strokeStyle: string;
-  fill: string;
-  opacity: number;
-  id?: string;
-}
+import { Point, Element } from "../helper/elements"; // Import Point and Element from elements.ts
 
 interface Corner {
   slug: string;
@@ -249,7 +232,7 @@ export function inSelectedCorner(
   y: number,
   padding: number,
   scale: number
-): Corner | undefined {
+): Corner | null { // Changed return type from undefined to null
   padding = element.tool === "line" || element.tool === "arrow" ? 0 : padding;
 
   const square = 10 / scale;
@@ -263,7 +246,7 @@ export function inSelectedCorner(
       x - corner.x >= 0 &&
       y - corner.y <= square &&
       y - corner.y >= 0
-  );
+  ) || null; // Explicitly return null if not found
 }
 
 export function cornerCursor(corner: string): string {

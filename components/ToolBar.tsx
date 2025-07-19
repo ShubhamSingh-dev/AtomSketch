@@ -1,12 +1,12 @@
-import { useAppContext } from "../provider/AppStates"
+import { useAppContext } from "../provider/AppStates";
 
 export function ToolBar() {
-  const {tools : toolCols, selectedTool, lockTool} = useAppContext();
+  const { tools: toolCols, selectedTool, lockTool } = useAppContext();
   return (
     <section className="toolbar">
-      {toolCols.map((tools, index) => {
+      {toolCols.map((tools: any, index: any) => {
         <div key={index}>
-          {tools.map((tool, index_) => {
+          {tools.map((tool: any, index_: any) => {
             <button
               key={index_}
               className={

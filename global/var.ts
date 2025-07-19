@@ -37,3 +37,14 @@ export const CANVAS_BACKGROUND = [
   "rgb(165, 216, 255)",
   "rgb(255, 236, 153)",
 ];
+
+export const SHORT_CUTS = [
+  ["control", "z"], // Undo
+  ["control", "y"], // Redo (Ctrl+Y)
+  ["control", "shift", "z"], // Redo (Ctrl+Shift+Z)
+  ["control", "d"], // Duplicate
+  ["control", "s"], // Save
+  ["control", "o"], // Open
+  ["backspace"], // Delete
+  ["delete"], // Delete
+];

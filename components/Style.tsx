@@ -8,35 +8,87 @@ import {
 } from "@/assets/icons";
 import { useAppContext } from "@/provider/AppStates";
 import { BACKGROUND_COLORS, STROKE_COLORS, STROKE_STYLES } from "../global/var";
+import {
+  Element,
+  updateElement,
+  moveElementLayer,
+  deleteElement,
+  duplicateElement,
+  minmax,
+} from "@/helper/elements"; // Import from your existing elements file
 import React, { useEffect, useState } from "react";
 
-export function Style({ selectedElement: selectedElement }: any) {
+// Type definitions for props
+interface StyleProps {
+  selectedElement: Element | null;
+}
+
+// Type for the local element style state
+interface ElementStyle {
+  fill: string;
+  strokeWidth: number;
+  strokeStyle: string;
+  strokeColor: string;
+  opacity: number;
+}
+
+// Type for style updates
+interface StyleUpdate {
+  fill?: string;
+  strokeWidth?: number;
+  strokeStyle?: string;
+  strokeColor?: string;
+  opacity?: number;
+}
+
+// Type for stroke style objects
+interface StrokeStyle {
+  slug: string;
+  icon: React.ComponentType;
+}
+
+export function Style({ selectedElement }: StyleProps) {
   const { elements, setElements, setSelectedElement, setStyle } =
     useAppContext();
 
-  const [elementStyle, setElementStyle] = useState({
-    fill: selectedElement?.fill,
-    strokeWidth: selectedElement?.strokeWidth,
-    strokeStyle: selectedElement?.strokeStyle,
-    strokeColor: selectedElement?.strokeColor,
-    opacity: selectedElement?.opacity,
+  const [elementStyle, setElementStyle] = useState<ElementStyle>({
+    fill: selectedElement?.fill || "",
+    strokeWidth: selectedElement?.strokeWidth || 1,
+    strokeStyle: selectedElement?.strokeStyle || "",
+    strokeColor: selectedElement?.strokeColor || "",
+    opacity: selectedElement?.opacity || 100,
   });
 
   useEffect(() => {
     if (selectedElement) {
       setElementStyle({
-        fill: selectedElement?.fill,
-        strokeWidth: selectedElement?.strokeWidth,
-        strokeStyle: selectedElement?.strokeStyle,
-        strokeColor: selectedElement?.strokeColor,
-        opacity: selectedElement?.opacity,
+        fill: selectedElement.fill || "",
+        strokeWidth: selectedElement.strokeWidth,
+        strokeStyle: selectedElement.strokeStyle || "",
+        strokeColor: selectedElement.strokeColor || "",
+        opacity: selectedElement.opacity || 100,
       });
     }
   }, [selectedElement]);
 
-  const setStylesStates = (styleObject) => {
+  const setStylesStates = (styleObject: StyleUpdate) => {
     setElementStyle((prevState) => ({ ...prevState, ...styleObject }));
-    setStyle((prevState) => ({ ...prevState, ...styleObject }));
+    setStyle((prevState: StyleUpdate) => ({ ...prevState, ...styleObject }));
+  };
+
+  // Helper function to match your updateElement signature
+  const updateElementHelper = (
+    id: string,
+    updates: Partial<Element>,
+    setElementsFunc: React.Dispatch<React.SetStateAction<Element[]>>,
+    elementsArray: Element[]
+  ) => {
+    // Create a wrapper function that matches your updateElement signature
+    const setElementsWrapper = (newElements: Element[]) => {
+      setElementsFunc(newElements);
+    };
+
+    updateElement(id, updates, setElementsWrapper, elementsArray);
   };
 
   if (!selectedElement) return null;
@@ -46,11 +98,11 @@ export function Style({ selectedElement: selectedElement }: any) {
       <div className="group strokeColor">
         <p>Stroke</p>
         <div className="innerGroup">
-          {STROKE_COLORS.map((color, index) => (
+          {STROKE_COLORS.map((color: string, index: number) => (
             <button
               type="button"
               title={color}
-              style={{ "--color": color }}
+              style={{ "--color": color } as React.CSSProperties}
               key={index}
               className={
                 "itemButton color" +
@@ -58,11 +110,9 @@ export function Style({ selectedElement: selectedElement }: any) {
               }
               onClick={() => {
                 setStylesStates({ strokeColor: color });
-                updateElement(
+                updateElementHelper(
                   selectedElement.id,
-                  {
-                    strokeColor: color,
-                  },
+                  { strokeColor: color },
                   setElements,
                   elements
                 );
@@ -71,26 +121,25 @@ export function Style({ selectedElement: selectedElement }: any) {
           ))}
         </div>
       </div>
+
       <div className="group backgroundColor">
         <p>Background</p>
         <div className="innerGroup">
-          {BACKGROUND_COLORS.map((fill, index) => (
+          {BACKGROUND_COLORS.map((fill: string, index: number) => (
             <button
               type="button"
               title={fill}
               className={
                 "itemButton color" +
-                (fill == elementStyle.fill ? " selected" : "")
+                (fill === elementStyle.fill ? " selected" : "")
               }
-              style={{ "--color": fill }}
+              style={{ "--color": fill } as React.CSSProperties}
               key={index}
               onClick={() => {
                 setStylesStates({ fill });
-                updateElement(
+                updateElementHelper(
                   selectedElement.id,
-                  {
-                    fill,
-                  },
+                  { fill },
                   setElements,
                   elements
                 );
@@ -99,6 +148,7 @@ export function Style({ selectedElement: selectedElement }: any) {
           ))}
         </div>
       </div>
+
       <div className="group strokeWidth">
         <p>Stroke width</p>
         <div className="innerGroup">
@@ -109,13 +159,12 @@ export function Style({ selectedElement: selectedElement }: any) {
             max={20}
             value={elementStyle.strokeWidth}
             step="1"
-            onChange={({ target }) => {
-              setStylesStates({ strokeWidth: minmax(+target.value, [0, 20]) });
-              updateElement(
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
+              const newWidth = minmax(+target.value, [0, 20]);
+              setStylesStates({ strokeWidth: newWidth });
+              updateElementHelper(
                 selectedElement.id,
-                {
-                  strokeWidth: minmax(+target.value, [0, 20]),
-                },
+                { strokeWidth: newWidth },
                 setElements,
                 elements
               );
@@ -123,25 +172,24 @@ export function Style({ selectedElement: selectedElement }: any) {
           />
         </div>
       </div>
+
       <div className="group strokeStyle">
         <p>Stroke style</p>
         <div className="innerGroup">
-          {STROKE_STYLES.map((style, index) => (
+          {STROKE_STYLES.map((style: StrokeStyle, index: number) => (
             <button
               type="button"
               title={style.slug}
               className={
                 "itemButton option" +
-                (style.slug == elementStyle.strokeStyle ? " selected" : "")
+                (style.slug === elementStyle.strokeStyle ? " selected" : "")
               }
               key={index}
               onClick={() => {
                 setStylesStates({ strokeStyle: style.slug });
-                updateElement(
+                updateElementHelper(
                   selectedElement.id,
-                  {
-                    strokeStyle: style.slug,
-                  },
+                  { strokeStyle: style.slug },
                   setElements,
                   elements
                 );
@@ -152,6 +200,7 @@ export function Style({ selectedElement: selectedElement }: any) {
           ))}
         </div>
       </div>
+
       <div className="group opacity">
         <p>Opacity</p>
         <div className="innerGroup">
@@ -162,15 +211,12 @@ export function Style({ selectedElement: selectedElement }: any) {
             className="itemRange"
             value={elementStyle.opacity}
             step="10"
-            onChange={({ target }) => {
-              setStylesStates({
-                opacity: minmax(+target.value, [0, 100]),
-              });
-              updateElement(
+            onChange={({ target }: React.ChangeEvent<HTMLInputElement>) => {
+              const newOpacity = minmax(+target.value, [0, 100]);
+              setStylesStates({ opacity: newOpacity });
+              updateElementHelper(
                 selectedElement.id,
-                {
-                  opacity: minmax(+target.value, [0, 100]),
-                },
+                { opacity: newOpacity },
                 setElements,
                 elements
               );
@@ -178,6 +224,7 @@ export function Style({ selectedElement: selectedElement }: any) {
           />
         </div>
       </div>
+
       {selectedElement?.id && (
         <React.Fragment>
           <div className="group layers">
