@@ -1,7 +1,7 @@
 "use client"; // Mark as a client component
 
 import { motion } from "framer-motion";
-import { Xmark } from "@/assets/icons"; 
+import { Xmark } from "@/assets/icons";
 import { useState } from "react";
 import { useAppContext } from "../provider/AppStates";
 import { v4 as uuid } from "uuid";
@@ -30,15 +30,15 @@ export const Collaboration = () => {
 
   const startSession = () => {
     const sessionId = uuid();
-    
+
     // Construct new URL with 'room' query parameter
     const currentPathname = window.location.pathname;
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.set('room', sessionId);
-    
+    newSearchParams.set("room", sessionId);
+
     // Use router.replace to update URL without full page reload
     router.replace(`${currentPathname}?${newSearchParams.toString()}`);
-    
+
     setSession(sessionId);
     socket.emit("join", sessionId);
   };
@@ -46,14 +46,16 @@ export const Collaboration = () => {
   const endSession = () => {
     // Get current search parameters
     const newSearchParams = new URLSearchParams(searchParams.toString());
-    newSearchParams.delete('room'); // Remove the 'room' parameter
-    
+    newSearchParams.delete("room"); // Remove the 'room' parameter
+
     // Construct new URL without 'room' query parameter
     const currentPathname = window.location.pathname;
-    const newUrl = newSearchParams.toString() ? `${currentPathname}?${newSearchParams.toString()}` : currentPathname;
+    const newUrl = newSearchParams.toString()
+      ? `${currentPathname}?${newSearchParams.toString()}`
+      : currentPathname;
 
     router.replace(newUrl); // Update URL
-    
+
     socket.emit("leave", session);
     setSession(null);
     setOpen(false);
@@ -91,8 +93,8 @@ const CreateSession: React.FC<CreateSessionProps> = ({ startSession }) => {
       <div>
         <p>Invite people to collaborate on your drawing.</p>
         <p>
-          Don&apos;t worry, the session is end-to-end encrypted, and fully private.
-          Not even our server can see what you draw.
+          Don&apos;t worry, the session is end-to-end encrypted, and fully
+          private. Not even our server can see what you draw.
         </p>
       </div>
       <button onClick={startSession}>Start session</button>
@@ -118,7 +120,7 @@ const SessionInfo: React.FC<SessionInfoProps> = ({ endSession }) => {
         <div className="collabLink">
           <input
             id="collabUrl"
-            type="url"
+            type="text" // Changed from "url" to "text"
             value={window.location.href}
             disabled
             readOnly
@@ -156,7 +158,12 @@ const CollabBox: React.FC<CollabBoxProps> = ({ collabState, children }) => {
         transition={{ duration: 0.15 }}
         className="collaborationBox"
       >
-        <button onClick={exit} type="button" className="closeCollbBox" aria-label="Close collaboration menu">
+        <button
+          onClick={exit}
+          type="button"
+          className="closeCollbBox"
+          aria-label="Close collaboration menu"
+        >
           <Xmark />
         </button>
 
